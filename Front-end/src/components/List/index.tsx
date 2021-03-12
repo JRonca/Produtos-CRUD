@@ -9,6 +9,8 @@ const List: React.FC = ({ children, ...rest }) => (
       <Product/>
       <Product/>
       <Product/>
+      <Product/>
+      <Product/>
   </Container>
 );
 export default List;

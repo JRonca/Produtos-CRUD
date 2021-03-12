@@ -3,11 +3,8 @@ import { shade } from 'polished';
 
 export const Container = styled.li`
   display:flex;
-  flex:0.22;
   flex-direction:column;
-   & + li {
-    margin-left: 5%;
-   }
+
 `;
 
 export const ProductInfo = styled.div`
@@ -16,7 +13,6 @@ export const ProductInfo = styled.div`
     justify-content: center;
     flex-direction:column;
     background: #232129;
-    height: 300px;
     border-radius: 10px 10px 0 0;
     border: 0;
     padding: 0 16px;
@@ -24,8 +20,11 @@ export const ProductInfo = styled.div`
     width: 100%;
     font-weight: 500;
     transition: background-color 0.2;
-    img{
+    h2{
         margin-top: 2vh;
+        margin-bottom: 2vh;
+    }
+    img{
         margin-bottom: 2vh;
         width:80%;
         border-radius: 100%;

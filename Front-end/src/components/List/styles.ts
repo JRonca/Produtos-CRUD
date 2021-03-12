@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.ul`
-  display:flex;
-  flex:0.9;
-  align-items:center;
-  justify-content:center;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2vw;
   list-style:none;
-  & + ul {
-    margin-top: 4vh;
-  }
+  margin-bottom: 5vh;
 `;

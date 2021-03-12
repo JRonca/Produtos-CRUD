@@ -11,7 +11,7 @@ export const Container = styled.div`
     margin-top:5vh;
     form {
         display: flex;
-        flex: 0.9;
+        flex: 1;
         flex-direction: row;
         button{
             margin-left: 2vw;
