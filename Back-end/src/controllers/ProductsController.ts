@@ -1,5 +1,7 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import db from '../config/db';
+import bucket from '../config/storage';
+import {format} from 'util';
 
 interface IResponseList{
     id: string;
@@ -72,6 +74,35 @@ export default class ProductsController {
         } catch (err) {
             console.error(err);
             return response.status(400).json({ error: "produto não editado" });
+        }
+	}
+    public async uploadImage(request: Request, response: Response, next: NextFunction): Promise<Response|undefined> {
+        try {
+            console.log(request.file)
+            const imagem = request.file;
+            if (!imagem) {
+                return response.status(400).json({ error: "no image file" });
+            }
+            const newFileName = `${Date.now()}_${imagem.originalname}`;
+            const blob = bucket.file(newFileName);
+            
+            const blobStream = blob.createWriteStream();
+            blobStream.on('error', err => {
+                next(err);
+              });
+              
+              blobStream.on('finish', async () => {
+                
+                await blob.makePublic();
+                const publicUrl = blob.publicUrl()
+
+                response.status(200).send(publicUrl);
+              });
+            
+              blobStream.end(imagem.buffer);
+        } catch (err) {
+            console.error(err);
+            return response.status(400).json({ error: "imagem não enviada" });
         }
 	}
     public async delete(request: Request, response: Response): Promise<Response> {
