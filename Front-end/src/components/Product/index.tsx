@@ -1,8 +1,11 @@
 import React from 'react';
 import { Container, ProductInfo,Buttons } from './styles';
 import { FiTrash2, FiEdit } from 'react-icons/fi';
+import {useModal} from '../../hooks/ModalContext'
 
-const Product: React.FC = ({ children, ...rest }) => (
+const Product: React.FC = ({children, ...rest }) => {
+  const {openModal} = useModal();
+  return (
   <Container {...rest}>
     <ProductInfo>
       <h2>Produto</h2>
@@ -10,9 +13,9 @@ const Product: React.FC = ({ children, ...rest }) => (
       <h2>R$ 52,00</h2>
     </ProductInfo>
     <Buttons>
-      <button><FiEdit size={24}/></button>
+      <button onClick={openModal}><FiEdit size={24}/></button>
       <button><FiTrash2 size={24}/></button>
     </Buttons>
   </Container>
-);
+)};
 export default Product;

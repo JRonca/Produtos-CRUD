@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import GlobalStyle from './styles/global';
 
@@ -6,16 +6,19 @@ import Header from './components/Header';
 import Search from './components/Search';
 import List from './components/List';
 import Content from './components/content';
-const App: React.FC = () =>(
+import {ModalProvider} from './hooks/ModalContext';
+const App: React.FC = () =>{
+  return (
   <>
-    <Header/>
-    <Content>
-      <Search/>
-      <List/>
-    </Content>
-    
+    <ModalProvider>
+      <Header/>
+      <Content>
+        <Search/>
+        <List/>
+      </Content>
+    </ModalProvider>
     <GlobalStyle/>
   </>
-);
+)};
 
 export default App;
